@@ -50,3 +50,8 @@ body {
     color: #fa7e61;
     text-align: center;
 }
+
+.center{
+    text-align: center;
+    justify-content: center;
+}

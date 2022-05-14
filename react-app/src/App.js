@@ -30,6 +30,10 @@ function App() {
                         path="/fiction"
                         element={<BooksRow list="Combined-Print-and-E-Book-Fiction" />}
                     />
+                    <Route 
+                        path="/login"
+                        element={<LoginForm />}
+                    />
                           
                     {/* <BooksRow title="NYT Fiction Best Sellers" /> */}
                 </Routes>
