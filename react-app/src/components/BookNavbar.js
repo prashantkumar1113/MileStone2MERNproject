@@ -26,15 +26,18 @@ export default function BookNavbar() {
                         <Link className="nav-link" to="/">
                             Home
                         </Link>
-                        <Link className="nav-link" to="/hardcover">
-                            Hardcover
+                        <Link className="nav-link" to="/register">
+                            Register
                         </Link>
-                        <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+                        <NavDropdown
+                            title="Bestseller Lists"
+                            id="basic-nav-dropdown"
+                        >
                             <NavDropdown.Item href="#action/3.1">
-                                Action
+                                Fiction
                             </NavDropdown.Item>
                             <NavDropdown.Item href="#action/3.2">
-                                Another action
+                                Non-Fiction
                             </NavDropdown.Item>
                             <NavDropdown.Item href="#action/3.3">
                                 Something
