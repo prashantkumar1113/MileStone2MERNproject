@@ -6,10 +6,13 @@ import BookCard from "./BookCard";
 //AIzaSyAvXjcBvtKyJEg06us3yjLNIKEBrFRhOP0 google key
 //https://www.googleapis.com/books/v1/volumes?q=lord+of+the+rings Google Books search
 
-export default function BooksRow({title}) {
+export default function BooksRow({list}) {
     let [books, setBooks] = useState([]);
-    const NYTAPI_URI =
-        "https://api.nytimes.com/svc/books/v3/lists/current/Combined-Print-and-E-Book-Fiction.json?api-key=";
+    const new_york_times_lists = [
+        "Mass-Market-Paperback",
+        "Combined-Print-and-E-Book-Fiction",
+    ];
+    const NYTAPI_URI = `https://api.nytimes.com/svc/books/v3/lists/current/${list}.json?api-key=`;
     const NYTAPI_KEY = "uQDQg09ZyozMNpN7BwGMUcp4AUVDjG2x";
 
     const OL_API =
@@ -39,7 +42,7 @@ export default function BooksRow({title}) {
 
     return (
         <Row className="mt-3">
-            <h2>{title}</h2>
+            <h2>{list}</h2>
             {books.map((book, id) => (
                 // <>
                 //     <p>{book.title}</p>
