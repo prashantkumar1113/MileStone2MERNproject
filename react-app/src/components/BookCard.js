@@ -2,12 +2,19 @@ import React from "react";
 import {Card, Button, Badge} from "react-bootstrap";
 
 export default function BookCard({book}) {
-    console.log(book);
+    console.log({
+        title: book.title,
+        book_image: book.book_image,
+        description: book.description,
+        primary_isbn10: book.primary_isbn10,
+        author: book.author,
+    });
     return (
         // <div>
         //     <p>{book.title}</p>
         //     <img src={book.book_image} alt={book.title} width="150px" />
         // </div>
+
         <Card style={{width: "16rem"}}>
             <Card.Img variant="top" src={book.book_image} />
             <Card.Body>
