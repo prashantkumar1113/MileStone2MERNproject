@@ -15,7 +15,7 @@ function App() {
       */}
             <BookNavbar />
             <Container>
-                <BooksRow title="Nonfiction Best Sellers" />
+                <BooksRow title="NYT Fiction Best Sellers" />
             </Container>
         </div>
     );
