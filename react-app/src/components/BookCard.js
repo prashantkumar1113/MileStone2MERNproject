@@ -2,13 +2,13 @@ import React from "react";
 import {Card, Button, Badge} from "react-bootstrap";
 
 export default function BookCard({book}) {
-    console.log({
-        title: book.title,
-        book_image: book.book_image,
-        description: book.description,
-        primary_isbn10: book.primary_isbn10,
-        author: book.author,
-    });
+    // console.log({
+    //     title: book.title,
+    //     book_image: book.book_image,
+    //     description: book.description,
+    //     primary_isbn10: book.primary_isbn10,
+    //     author: book.author,
+    // });
     return (
         // <div>
         //     <p>{book.title}</p>

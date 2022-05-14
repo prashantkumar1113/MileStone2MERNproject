@@ -6,35 +6,37 @@ import BookCard from "./BookCard";
 //AIzaSyAvXjcBvtKyJEg06us3yjLNIKEBrFRhOP0 google key
 //https://www.googleapis.com/books/v1/volumes?q=lord+of+the+rings Google Books search
 
-export default function BooksRow({list}) {
-    let [books, setBooks] = useState([]);
-    const new_york_times_lists = [
-        "Mass-Market-Paperback",
-        "Combined-Print-and-E-Book-Fiction",
-    ];
-    const NYTAPI_URI = `https://api.nytimes.com/svc/books/v3/lists/current/${list}.json?api-key=`;
-    const NYTAPI_KEY = "uQDQg09ZyozMNpN7BwGMUcp4AUVDjG2x";
+export default function BooksRow({books, list}) {
+    // let [books, setBooks] = useState([]);
+    console.log("list: ", list);
+    // const new_york_times_lists = [
+    //     "Mass-Market-Paperback",
+    //     "Combined-Print-and-E-Book-Fiction",
+    // ];
+    // const NYTAPI_URI = `https://api.nytimes.com/svc/books/v3/lists/current/${list}.json?api-key=`;
 
-    const OL_API =
-        "https://openlibrary.org/subjects/new_york_times_bestseller.json";
+    // const OL_API =
+    //     "https://openlibrary.org/subjects/new_york_times_bestseller.json";
 
-    useEffect(() => {
-        const fetchData = async () => {
-            const response = await fetch(NYTAPI_URI + NYTAPI_KEY);
-            // const response = await fetch(OL_API);
-            //console.log("RES", response);
-            const resData = await response.json();
-            // console.log(resData.results.books);
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         const response = await fetch(
+    //             NYTAPI_URI + process.env.REACT_APP_NYT_APIKEY
+    //         );
+    //         // const response = await fetch(OL_API);
+    //         //console.log("RES", response);
+    //         const resData = await response.json();
+    //         // console.log(resData.results.books);
 
-            if (resData.results.books) {
-                setBooks(resData.results.books);
-                console.log("Books", books);
-            } else {
-                setBooks("Not found");
-            }
-        };
-        fetchData();
-    }, []);
+    //         if (resData.results.books) {
+    //             setBooks(resData.results.books);
+    //             console.log("Books", books);
+    //         } else {
+    //             setBooks("Not found");
+    //         }
+    //     };
+    //     fetchData();
+    // }, []);
 
     // const renderBookCards = books.map((book, index) => {
     //     return <BookCard book={book} />;
