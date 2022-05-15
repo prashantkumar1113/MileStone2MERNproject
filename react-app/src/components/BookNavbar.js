@@ -10,12 +10,13 @@ import {
 } from "react-bootstrap";
 import {Link} from "react-router-dom";
 
-export default function BookNavbar() {
+export default function BookNavbar({setList}) {
     return (
         <Navbar bg="primary" variant="dark" expand="lg">
             <Container>
                 <Navbar.Brand href="/">
-                    {/* <i class="fa-solid fa-book-open-reader"></i> */}
+                    <i className="fas fa-book-reader"></i>{" "}
+                    {/* <i className="fab fa-facebook"></i> */}
                     SQLDaddy Bookclub
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -26,26 +27,47 @@ export default function BookNavbar() {
                         <Link className="nav-link" to="/">
                             Home
                         </Link>
-                        <Link className="nav-link" to="/register">
-                            Register
+                        <Link className="nav-link" to="/login">
+                            Login
                         </Link>
                         <NavDropdown
                             title="Bestseller Lists"
                             id="basic-nav-dropdown"
                         >
-                            <NavDropdown.Item href="#action/3.1">
+                            {/* <Link className="dropdown-item" to="/fiction"> */}
+                            <Link
+                                to="/list"
+                                className="dropdown-item"
+                                onClick={() => {
+                                    setList(
+                                        "Combined-Print-and-E-Book-Fiction"
+                                    );
+                                }}
+                            >
                                 Fiction
-                            </NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.2">
-                                Non-Fiction
-                            </NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.3">
-                                Something
-                            </NavDropdown.Item>
+                            </Link>
+                            <Link
+                                to="/list"
+                                className="dropdown-item"
+                                onClick={() => {
+                                    setList(
+                                        "Combined-Print-and-E-Book-Nonfiction"
+                                    );
+                                }}
+                            >
+                                {" "}
+                                Non Fiction
+                            </Link>
                             <NavDropdown.Divider />
-                            <NavDropdown.Item href="#action/3.4">
-                                Separated link
-                            </NavDropdown.Item>
+                            <Link
+                                className="dropdown-item"
+                                onClick={() => {
+                                    setList("Advice-How-To-and-Miscellaneous");
+                                }}
+                                to="/list"
+                            >
+                                Advice How-To and Miscellaneous
+                            </Link>
                         </NavDropdown>
                     </Nav>
                     <Form className="d-flex">
