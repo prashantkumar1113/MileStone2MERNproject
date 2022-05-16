@@ -14,12 +14,14 @@ function App() {
     // console.log(process.env.REACT_APP_NYT_APIKEY);
     const [list, setList] = useState("Combined-Print-and-E-Book-Fiction");
     const [books, setBooks] = useState([]);
+    const [search, setSearch] = useState("");
 
     const NYTAPI_URI = `https://api.nytimes.com/svc/books/v3/lists/current/${list}.json?api-key=`;
 
     const OL_API =
         "https://openlibrary.org/subjects/new_york_times_bestseller.json";
 
+    //Nav dropdown useEffect
     useEffect(() => {
         const fetchData = async () => {
             const response = await fetch(
@@ -40,9 +42,38 @@ function App() {
         fetchData();
     }, [list]);
 
+    const handleSearch = (e, term) => {
+        e.preventDefault();
+        setSearch(term);
+        console.log(term);
+    };
+
+    //Search useEffect
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await fetch(
+                "https://www.googleapis.com/books/v1/volumes?q=" +
+                    search +
+                    "&printType=books"
+            );
+            const resData = await response.json();
+            // console.log(resData.results.books);
+
+            if (resData.items) {
+                // setBooks(resData.items);
+                // console.log("Books", books);
+                console.log("Search", search);
+                console.log("useEffect on search", resData.items);
+            } else {
+                // setBooks("Not found");
+            }
+        };
+        fetchData();
+    }, [search]);
+
     return (
         <Router>
-            <BookNavbar setList={setList} />
+            <BookNavbar setList={setList} handleSearch={handleSearch} />
             <Container>
                 <Routes>
                     <Route path="/" element={<RegisterForm />} />

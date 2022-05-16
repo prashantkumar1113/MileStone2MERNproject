@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {
     Navbar,
     Container,
@@ -10,7 +10,9 @@ import {
 } from "react-bootstrap";
 import {Link} from "react-router-dom";
 
-export default function BookNavbar({setList}) {
+export default function BookNavbar({setList, handleSearch}) {
+    const [searchTerm, setSearchTerm] = useState("");
+
     return (
         <Navbar bg="primary" variant="dark" expand="lg">
             <Container>
@@ -70,14 +72,23 @@ export default function BookNavbar({setList}) {
                             </Link>
                         </NavDropdown>
                     </Nav>
-                    <Form className="d-flex">
+                    <Form
+                        className="d-flex"
+                        onSubmit={(e) => handleSearch(e, searchTerm)}
+                    >
                         <FormControl
                             type="search"
                             placeholder="Search"
                             className="me-2"
                             aria-label="Search"
+                            onChange={(e) => {
+                                setSearchTerm(e.target.value);
+                                // console.log(e.target.value);
+                            }}
                         />
-                        <Button variant="outline-primary">Search</Button>
+                        <Button variant="outline-primary" type="submit">
+                            Search
+                        </Button>
                     </Form>
                 </Navbar.Collapse>
             </Container>
