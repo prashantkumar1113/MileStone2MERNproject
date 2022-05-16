@@ -56,6 +56,17 @@ app.get("/Rosters/:filter", async (req, res) => {
   res.status(200).json(response);
 });
 
+// Users
+app.get("/Users", async (req, res) => {
+  const response = await Users();
+  res.status(200).json(response);
+});
+
+app.get("/Users/:email", async (req, res) => {
+  const response = await Users(req.params.email);
+  res.status(200).json(response);
+});
+
 // Start Listening
 app.listen(process.env.PORT, () => {
   console.log(`Server running on PORT: ${process.env.PORT}`);
