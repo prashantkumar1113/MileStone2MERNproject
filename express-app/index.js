@@ -5,6 +5,7 @@ const fetch = require("node-fetch-commonjs");
 
 const { Books, Clubs, Rosters, Users } =  require("./queries.js")
 
+///////////////////////////////////////////////////////////////////////
 // Root
 app.get("/", async (req, res) => {
   res.status(200).json({
@@ -12,6 +13,7 @@ app.get("/", async (req, res) => {
   });
 });
 
+///////////////////////////////////////////////////////////////////////
 // Books
 app.get("/Books", async (req, res) => {
   const response = await Books();
@@ -23,6 +25,7 @@ app.get("/Books/:isbn", async (req, res) => {
   res.status(200).json(response);
 });
 
+///////////////////////////////////////////////////////////////////////
 // Clubs
 app.get("/Clubs", async (req, res) => {
   const response = await Clubs();
@@ -34,17 +37,7 @@ app.get("/Clubs/:id", async (req, res) => {
   res.status(200).json(response);
 });
 
-// Clubs
-app.get("/Clubs", async (req, res) => {
-  const response = await Clubs();
-  res.status(200).json(response);
-});
-
-app.get("/Clubs/:id", async (req, res) => {
-  const response = await Clubs(req.params.id);
-  res.status(200).json(response);
-});
-
+///////////////////////////////////////////////////////////////////////
 // Rosters
 app.get("/Rosters", async (req, res) => {
   const response = await Rosters();
@@ -56,6 +49,7 @@ app.get("/Rosters/:filter", async (req, res) => {
   res.status(200).json(response);
 });
 
+///////////////////////////////////////////////////////////////////////
 // Users
 app.get("/Users", async (req, res) => {
   const response = await Users();
@@ -67,7 +61,10 @@ app.get("/Users/:email", async (req, res) => {
   res.status(200).json(response);
 });
 
+///////////////////////////////////////////////////////////////////////
 // Start Listening
 app.listen(process.env.PORT, () => {
   console.log(`Server running on PORT: ${process.env.PORT}`);
 });
+
+///////////////////////////////////////////////////////////////////////
