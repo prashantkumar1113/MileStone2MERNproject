@@ -18,7 +18,6 @@ exports.Rosters = (filter) => {
   var query = (filter === undefined) ? `SELECT * FROM rosters` :
               (isNaN(filter))        ? `SELECT * FROM rosters WHERE usersemail = '${filter}'` :
                                        `SELECT * FROM rosters WHERE clubsid    = '${filter}'`;
-  console.log(filter.match("@"))
   return db.manyOrNone(
     `${query}`
   )
