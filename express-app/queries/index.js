@@ -18,8 +18,9 @@ exports.FetchRosters = () => {
   )
 }
 
-exports.FetchUsers = () => {
+exports.Users = (email) => {
+  var query = (email === undefined) ? `SELECT * FROM users` : `SELECT * FROM users WHERE email = '${email}'`
   return db.manyOrNone(
-    `SELECT * FROM users`
+    `${query}`
   )
 }
