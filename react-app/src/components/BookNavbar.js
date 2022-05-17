@@ -10,7 +10,7 @@ import {
 } from "react-bootstrap";
 import {Link, useNavigate} from "react-router-dom";
 
-export default function BookNavbar({setList, handleSearch}) {
+export default function BookNavbar({handleSearch}) {
     const [searchTerm, setSearchTerm] = useState("");
     const navigate = useNavigate();
 
@@ -34,142 +34,93 @@ export default function BookNavbar({setList, handleSearch}) {
                         >
                             {/* <Link className="dropdown-item" to="/fiction"> */}
                             <Link
-                                to="/list"
+                                to="/bestsellers/Combined-Print-and-E-Book-Fiction"
                                 className="dropdown-item"
-                                onClick={() => {
-                                    setList(
-                                        "Combined-Print-and-E-Book-Fiction"
-                                    );
-                                }}
                             >
                                 Fiction
                             </Link>
                             <Link
-                                to="/list"
+                                to="/bestsellers/Combined-Print-and-E-Book-Nonfiction"
                                 className="dropdown-item"
-                                onClick={() => {
-                                    setList(
-                                        "Combined-Print-and-E-Book-Nonfiction"
-                                    );
-                                }}
                             >
                                 Non Fiction
                             </Link>
                             <Link
-                                to="/list"
+                                to="/bestsellers/Young-Adult"
                                 className="dropdown-item"
-                                onClick={() => {
-                                    setList("Young-Adult");
-                                }}
                             >
                                 Young Adult
                             </Link>
                             <Link
-                                to="/list"
+                                to="/bestsellers/Childrens-Middle-Grade"
                                 className="dropdown-item"
-                                onClick={() => {
-                                    setList("Childrens-Middle-Grade");
-                                }}
                             >
                                 Childrens Books
                             </Link>
                             <NavDropdown.Divider />
                             <Link
                                 className="dropdown-item"
-                                onClick={() => {
-                                    setList("Business-Books");
-                                }}
-                                to="/list"
+                                to="/bestsellers/Business-Books"
                             >
                                 Business Books
                             </Link>
                             <Link
                                 className="dropdown-item"
-                                onClick={() => {
-                                    setList("Celebrities");
-                                }}
-                                to="/list"
+                                to="/bestsellers/Celebrities"
                             >
                                 Celebrities
                             </Link>
                             <Link
                                 className="dropdown-item"
-                                onClick={() => {
-                                    setList("Culture");
-                                }}
-                                to="/list"
+                                to="/bestsellers/Culture"
                             >
                                 Culture
                             </Link>
                             <Link
                                 className="dropdown-item"
-                                onClick={() => {
-                                    setList("Education");
-                                }}
-                                to="/list"
+                                to="/bestsellers/Education"
                             >
                                 Education
                             </Link>
                             <Link
                                 className="dropdown-item"
-                                onClick={() => {
-                                    setList("Health");
-                                }}
-                                to="/list"
+                                to="/bestsellers/Health"
                             >
                                 Health
                             </Link>
                             <Link
                                 className="dropdown-item"
-                                onClick={() => {
-                                    setList("Humor");
-                                }}
-                                to="/list"
+                                to="/bestsellers/Humor"
                             >
                                 Humor
                             </Link>
                             <Link
                                 className="dropdown-item"
-                                onClick={() => {
-                                    setList("Science");
-                                }}
-                                to="/list"
+                                to="/bestsellers/Science"
                             >
                                 Science
                             </Link>
                             <Link
                                 className="dropdown-item"
-                                onClick={() => {
-                                    setList("Sports");
-                                }}
-                                to="/list"
+                                to="/bestsellers/Sports"
                             >
                                 Sports
                             </Link>
                             <Link
                                 className="dropdown-item"
-                                onClick={() => {
-                                    setList("Travel");
-                                }}
-                                to="/list"
+                                to="/bestsellers/Travel"
                             >
                                 Travel
                             </Link>
                             <Link
                                 className="dropdown-item"
-                                onClick={() => {
-                                    setList("Graphic-Books-and-Manga");
-                                }}
-                                to="/list"
+                                to="/bestsellers/Graphic-Books-and-Manga"
                             >
                                 Graphic Books and Manga
                             </Link>
                             <Link
                                 className="dropdown-item"
-                                onClick={() => {
-                                    setList("Advice-How-To-and-Miscellaneous");
-                                }}
-                                to="/list"
+                                to="/bestsellers/Advice-How-To-and-Miscellaneous"
                             >
                                 Advice How-To and Miscellaneous
                             </Link>
@@ -193,9 +144,8 @@ export default function BookNavbar({setList, handleSearch}) {
                     <Form
                         className="d-flex"
                         onSubmit={(e) => {
-                            handleSearch(e, searchTerm);
-                            // navigate(`/search/${searchTerm}`);
-                            navigate("/search");
+                            //handleSearch(e, searchTerm);
+                            navigate(`/search/${searchTerm}`);
                         }}
                     >
                         <FormControl

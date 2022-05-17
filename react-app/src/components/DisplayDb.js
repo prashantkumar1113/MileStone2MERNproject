@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
+import {Row, Card} from "react-bootstrap";
 
 export default function DisplayDb() {
     const [dbData, setDbData] = useState([]);
@@ -7,6 +8,7 @@ export default function DisplayDb() {
     console.log("params", displayField);
 
     useEffect(() => {
+        document.title = `Dbdata - ${displayField}`;
         const OUR_DB_URL = "http://localhost:3001/";
         const fetchData = async () => {
             const response = await fetch(OUR_DB_URL + displayField);
@@ -25,20 +27,22 @@ export default function DisplayDb() {
     }, [displayField]);
 
     return (
-        <div>
-            <h2>{displayField}</h2>
-            {dbData.map((data, id) => (
-                <>
-                    <div key={id}>
-                        {Object.keys(data).map((objectKey) => (
-                            <p>
-                                {objectKey}: {data[objectKey]}
-                            </p>
-                        ))}
-                    </div>
-                    <hr />
-                </>
-            ))}
-        </div>
+        <Row className="mt-3">
+            <Card>
+                <h2>{displayField}</h2>
+                {dbData.map((data, id) => (
+                    <>
+                        <div key={id}>
+                            {Object.keys(data).map((objectKey) => (
+                                <p>
+                                    <b>{objectKey}:</b> {data[objectKey]}
+                                </p>
+                            ))}
+                        </div>
+                        <hr />
+                    </>
+                ))}
+            </Card>
+        </Row>
     );
 }
