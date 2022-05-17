@@ -8,6 +8,7 @@ import SearchResults from "./components/SearchResults";
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import {useState, useEffect} from "react";
 import "./App.css";
+import DisplayDb from "./components/DisplayDb";
 
 function App() {
     const [list, setList] = useState("Combined-Print-and-E-Book-Fiction");
@@ -79,7 +80,7 @@ function App() {
                     <Route path="/" element={<RegisterForm />} />
                     <Route path="/login" element={<LoginForm />} />
                     <Route
-                        path="/list/"
+                        path="/list"
                         element={<BooksRow books={books} list={list} />}
                     />
                     <Route
@@ -90,6 +91,10 @@ function App() {
                                 searchTerm={search}
                             />
                         }
+                    />
+                    <Route
+                        path="/db/users"
+                        element={<DisplayDb displayField={"users"} />}
                     />
                 </Routes>
             </Container>

@@ -5,13 +5,14 @@
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "node server",
-        "dev": "nodemon server"
+        "start": "node",
+        "dev": "nodemon"
     },
     "author": "",
     "license": "ISC",
     "dependencies": {
         "connection-string": "^4.3.5",
+        "cors": "^2.8.5",
         "dotenv": "^16.0.1",
         "express": "^4.18.1",
         "node-fetch": "^3.2.4",
