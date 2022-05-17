@@ -8,10 +8,11 @@ import {
     FormControl,
     Button,
 } from "react-bootstrap";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 export default function BookNavbar({setList, handleSearch}) {
     const [searchTerm, setSearchTerm] = useState("");
+    const navigate = useNavigate();
 
     return (
         <Navbar bg="primary" variant="dark" expand="lg">
@@ -57,8 +58,16 @@ export default function BookNavbar({setList, handleSearch}) {
                                     );
                                 }}
                             >
-                                {" "}
                                 Non Fiction
+                            </Link>
+                            <Link
+                                to="/list"
+                                className="dropdown-item"
+                                onClick={() => {
+                                    setList("Childrens-Middle-Grade");
+                                }}
+                            >
+                                Childrens Books
                             </Link>
                             <NavDropdown.Divider />
                             <Link
@@ -74,7 +83,11 @@ export default function BookNavbar({setList, handleSearch}) {
                     </Nav>
                     <Form
                         className="d-flex"
-                        onSubmit={(e) => handleSearch(e, searchTerm)}
+                        onSubmit={(e) => {
+                            handleSearch(e, searchTerm);
+                            // navigate(`/search/${searchTerm}`);
+                            navigate("/search");
+                        }}
                     >
                         <FormControl
                             type="search"

@@ -4,17 +4,16 @@ import LoginForm from "./components/Login";
 import RegisterForm from "./components/Register";
 import BookNavbar from "./components/BookNavbar";
 import BooksRow from "./components/BooksRow";
+import SearchResults from "./components/SearchResults";
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import {useState, useEffect} from "react";
-
-// import logo from "./logo.svg";
 import "./App.css";
 
 function App() {
-    // console.log(process.env.REACT_APP_NYT_APIKEY);
     const [list, setList] = useState("Combined-Print-and-E-Book-Fiction");
     const [books, setBooks] = useState([]);
-    const [search, setSearch] = useState("");
+    const [searchBooks, setSearchBooks] = useState([]);
+    const [search, setSearch] = useState("Hello");
 
     const NYTAPI_URI = `https://api.nytimes.com/svc/books/v3/lists/current/${list}.json?api-key=`;
 
@@ -30,8 +29,6 @@ function App() {
             // const response = await fetch(OL_API);
             //console.log("RES", response);
             const resData = await response.json();
-            // console.log(resData.results.books);
-
             if (resData.results.books) {
                 setBooks(resData.results.books);
                 console.log("Books", books);
@@ -46,6 +43,7 @@ function App() {
         e.preventDefault();
         setSearch(term);
         console.log(term);
+        // navigate(`/search/${search}`);
     };
 
     //Search useEffect
@@ -54,7 +52,7 @@ function App() {
             const response = await fetch(
                 "https://www.googleapis.com/books/v1/volumes?q=" +
                     search +
-                    "&printType=books"
+                    "&printType=books&maxResults=20"
             );
             const resData = await response.json();
             // console.log(resData.results.books);
@@ -63,9 +61,11 @@ function App() {
                 // setBooks(resData.items);
                 // console.log("Books", books);
                 console.log("Search", search);
-                console.log("useEffect on search", resData.items);
+                // console.log("useEffect on search", resData.items);
+                setSearchBooks(resData.items);
+                console.log("SearchBooks", searchBooks);
             } else {
-                // setBooks("Not found");
+                setSearchBooks("Not found");
             }
         };
         fetchData();
@@ -79,17 +79,18 @@ function App() {
                     <Route path="/" element={<RegisterForm />} />
                     <Route path="/login" element={<LoginForm />} />
                     <Route
-                        path="/list"
+                        path="/list/"
                         element={<BooksRow books={books} list={list} />}
                     />
                     <Route
-                        path="/fiction"
+                        path="/search"
                         element={
-                            <BooksRow list="Combined-Print-and-E-Book-Fiction" />
+                            <SearchResults
+                                books={searchBooks}
+                                searchTerm={search}
+                            />
                         }
                     />
-
-                    {/* <BooksRow title="NYT Fiction Best Sellers" /> */}
                 </Routes>
             </Container>
         </Router>
