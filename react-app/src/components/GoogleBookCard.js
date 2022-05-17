@@ -1,5 +1,5 @@
 import React from "react";
-import {Card, Button, Badge} from "react-bootstrap";
+import {Card, Button} from "react-bootstrap";
 
 export default function GoogleBookCard({book, saleInfo}) {
     console.log("Sales info", saleInfo);
@@ -15,7 +15,7 @@ export default function GoogleBookCard({book, saleInfo}) {
                         {book.description.substring(0, 100)}...
                     </Card.Text>
                 )}
-                {saleInfo && (
+                {saleInfo && saleInfo.buyLink && (
                     <Button href={saleInfo.buyLink} target="_blank">
                         Buy
                     </Button>
