@@ -1,7 +1,10 @@
 import React, {useEffect, useState} from "react";
+import {useParams} from "react-router-dom";
 
-export default function DisplayDb({displayField}) {
+export default function DisplayDb() {
     const [dbData, setDbData] = useState([]);
+    const {displayField} = useParams();
+    console.log("params", displayField);
 
     useEffect(() => {
         const OUR_DB_URL = "http://localhost:3001/";
@@ -11,13 +14,15 @@ export default function DisplayDb({displayField}) {
             console.log("RES Data", resData);
             if (resData) {
                 setDbData(resData);
-                console.log("Data", dbData);
+                if (resData.length > 0) {
+                    console.log("Keys", Object.keys(resData[0]));
+                }
             } else {
                 setDbData("Not found");
             }
         };
         fetchData();
-    }, []);
+    }, [displayField]);
 
     return (
         <div>
@@ -25,10 +30,11 @@ export default function DisplayDb({displayField}) {
             {dbData.map((data, id) => (
                 <>
                     <div key={id}>
-                        <p>{data.email}</p>
-                        <p>{data.firstname}</p>
-                        <p>{data.lastname}</p>
-                        <p>{data.birthdate}</p>
+                        {Object.keys(data).map((objectKey) => (
+                            <p>
+                                {objectKey}: {data[objectKey]}
+                            </p>
+                        ))}
                     </div>
                     <hr />
                 </>

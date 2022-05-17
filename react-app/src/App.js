@@ -92,10 +92,7 @@ function App() {
                             />
                         }
                     />
-                    <Route
-                        path="/db/users"
-                        element={<DisplayDb displayField={"users"} />}
-                    />
+                    <Route path="/db/:displayField" element={<DisplayDb />} />
                 </Routes>
             </Container>
         </Router>

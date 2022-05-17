@@ -14,7 +14,11 @@ export default function GoogleBookCard({book}) {
                         {book.title} <Badge bg="primary">{book.rank}</Badge>
                     </Card.Title>
                 )}
-                {book.description && <Card.Text>{book.description}</Card.Text>}
+                {book.description && (
+                    <Card.Text>
+                        {book.description.substring(0, 100)}...
+                    </Card.Text>
+                )}
             </Card.Body>
             {book.industryIdentifiers && (
                 <Card.Footer>
