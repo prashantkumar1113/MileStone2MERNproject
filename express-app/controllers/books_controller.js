@@ -26,18 +26,44 @@ books.get("/:isbn", async (req, res) => {
   res.status(200).json(response);
 });
 
+// Update Routes
+books.put("/", async (req, res) => {
+  try {
+    const response = await queryToUpdateBooks(req.body);
+    res.status(200).json(response);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
+// Delete Routes
+books.delete("/:isbn", async (req, res) => {
+  console.log("DELETE Route")
+  try {
+    const response = await queryToDeleteBooks(req.params.isbn);
+    res.status(200).json(response);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
 ///////////////////////////////////////////////////////////////////////
 // Queries
 
 queryToFetchBooks = (isbn) => {
-    var query = (isbn === undefined) ? `SELECT * FROM books` : `SELECT * FROM books WHERE isbn = '${isbn}'`;
-    return db.manyOrNone(
-      `${query}`
-    );
+    if (isbn === undefined) {
+      return db.manyOrNone(
+        'SELECT * FROM books'
+      );
+    } else {
+      return db.oneOrNone(
+        `SELECT * FROM books WHERE isbn = '${isbn}'`
+      );
+    }
 }
 
 queryToInsertBooks = (body) => {
-  console.log(body)
+  //console.log(body)
   return db.one(
     `
     INSERT INTO books (isbn, title, author, description)
@@ -46,6 +72,28 @@ queryToInsertBooks = (body) => {
     `,
     { ...body }
   );
+}
+
+queryToUpdateBooks = (body) => {
+  //console.log(body)
+  return db.one(
+    `
+    UPDATE books SET
+    title = $/title/,
+    author = $/author/,
+    description =  $/description/
+    WHERE isbn = $/isbn/
+    RETURNING isbn
+    `,
+    { ...body }
+  );
+}
+
+queryToDeleteBooks = (isbn) => {
+  //console.log(isbn)
+  return db.result(
+    'DELETE FROM books WHERE isbn = $1', isbn, a => a.rowCount
+    );
 }
 
 module.exports = books
