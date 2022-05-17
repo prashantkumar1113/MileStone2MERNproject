@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {
     Navbar,
     Container,
@@ -8,9 +8,12 @@ import {
     FormControl,
     Button,
 } from "react-bootstrap";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
-export default function BookNavbar({setList}) {
+export default function BookNavbar({setList, handleSearch}) {
+    const [searchTerm, setSearchTerm] = useState("");
+    const navigate = useNavigate();
+
     return (
         <Navbar bg="primary" variant="dark" expand="lg">
             <Container>
@@ -55,8 +58,16 @@ export default function BookNavbar({setList}) {
                                     );
                                 }}
                             >
-                                {" "}
                                 Non Fiction
+                            </Link>
+                            <Link
+                                to="/list"
+                                className="dropdown-item"
+                                onClick={() => {
+                                    setList("Childrens-Middle-Grade");
+                                }}
+                            >
+                                Childrens Books
                             </Link>
                             <NavDropdown.Divider />
                             <Link
@@ -70,14 +81,27 @@ export default function BookNavbar({setList}) {
                             </Link>
                         </NavDropdown>
                     </Nav>
-                    <Form className="d-flex">
+                    <Form
+                        className="d-flex"
+                        onSubmit={(e) => {
+                            handleSearch(e, searchTerm);
+                            // navigate(`/search/${searchTerm}`);
+                            navigate("/search");
+                        }}
+                    >
                         <FormControl
                             type="search"
                             placeholder="Search"
                             className="me-2"
                             aria-label="Search"
+                            onChange={(e) => {
+                                setSearchTerm(e.target.value);
+                                // console.log(e.target.value);
+                            }}
                         />
-                        <Button variant="outline-primary">Search</Button>
+                        <Button variant="outline-primary" type="submit">
+                            Search
+                        </Button>
                     </Form>
                 </Navbar.Collapse>
             </Container>

@@ -1,5 +1,4 @@
 import React from "react";
-import {useState, useEffect} from "react";
 import {Row} from "react-bootstrap";
 import BookCard from "./BookCard";
 
@@ -7,49 +6,12 @@ import BookCard from "./BookCard";
 //https://www.googleapis.com/books/v1/volumes?q=lord+of+the+rings Google Books search
 
 export default function BooksRow({books, list}) {
-    // let [books, setBooks] = useState([]);
     console.log("list: ", list);
-    // const new_york_times_lists = [
-    //     "Mass-Market-Paperback",
-    //     "Combined-Print-and-E-Book-Fiction",
-    // ];
-    // const NYTAPI_URI = `https://api.nytimes.com/svc/books/v3/lists/current/${list}.json?api-key=`;
-
-    // const OL_API =
-    //     "https://openlibrary.org/subjects/new_york_times_bestseller.json";
-
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         const response = await fetch(
-    //             NYTAPI_URI + process.env.REACT_APP_NYT_APIKEY
-    //         );
-    //         // const response = await fetch(OL_API);
-    //         //console.log("RES", response);
-    //         const resData = await response.json();
-    //         // console.log(resData.results.books);
-
-    //         if (resData.results.books) {
-    //             setBooks(resData.results.books);
-    //             console.log("Books", books);
-    //         } else {
-    //             setBooks("Not found");
-    //         }
-    //     };
-    //     fetchData();
-    // }, []);
-
-    // const renderBookCards = books.map((book, index) => {
-    //     return <BookCard book={book} />;
-    // });
 
     return (
         <Row className="mt-3">
             <h2>{list}</h2>
             {books.map((book, id) => (
-                // <>
-                //     <p>{book.title}</p>
-                //     <img src={book.book_image} width="50px" alt={book.title} />
-                // </>
                 <BookCard book={book} key={id} />
             ))}
         </Row>
