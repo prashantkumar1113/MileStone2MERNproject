@@ -1,87 +1,33 @@
-require("dotenv").config();
-const express = require("express");
-const app = express();
-//const fetch = require("node-fetch-commonjs");
+// DEPENDENCIES
+const express = require('express')
+
+// CONFIGURATION
+require('dotenv').config()
+const app = express()
+
+// MIDDLEWARE
+app.use(express.urlencoded({extended: true}))
 app.use(express.json())
-app.use(express.urlencoded({ extended: false }))
 
-const {
-  GetBooks,
-  GetClubs,
-  GetRosters,
-  GetUsers,
-  queryToInsertBooks
-} =  require("./queries.js")
+// ROUTES
+app.get('/', (req, res) => {
+  res.send('Welcome to the Books API')
+})
 
-///////////////////////////////////////////////////////////////////////
-// Root
-app.get("/", async (req, res) => {
-  res.status(200).json({
-      message: "Welcome to our Bookclub API",
-  });
-});
+// Controllers: 
+const booksController = require('./controllers/books_controller.js')
+app.use('/books', booksController)
 
-///////////////////////////////////////////////////////////////////////
-// Books
-app.get("/Books", async (req, res) => {
-  const response = await GetBooks();
-  res.status(200).json(response);
-});
+const clubsController = require('./controllers/clubs_controller.js')
+app.use('/clubs', clubsController)
 
-app.get("/Books/:isbn", async (req, res) => {
-  const response = await GetBooks(req.params.isbn);
-  res.status(200).json(response);
-});
+const rostersController = require('./controllers/rosters_controller.js')
+app.use('/rosters', rostersController)
 
-app.post("/Books", async (req, res) => {
-  try {
-    const response = await queryToInsertBooks(req.body);
-    res.status(200).json(response);
-  } catch (error) {
-    res.status(500).json(error);
-  }
-});
+const usersController = require('./controllers/users_controller.js')
+app.use('/users', usersController)
 
-///////////////////////////////////////////////////////////////////////
-// Clubs
-app.get("/Clubs", async (req, res) => {
-  const response = await GetClubs();
-  res.status(200).json(response);
-});
-
-app.get("/Clubs/:id", async (req, res) => {
-  const response = await GetClubs(req.params.id);
-  res.status(200).json(response);
-});
-
-///////////////////////////////////////////////////////////////////////
-// Rosters
-app.get("/Rosters", async (req, res) => {
-  const response = await GetRosters();
-  res.status(200).json(response);
-});
-
-app.get("/Rosters/:filter", async (req, res) => {
-  const response = await GetRosters(req.params.filter);
-  res.status(200).json(response);
-});
-
-///////////////////////////////////////////////////////////////////////
-// Users
-app.get("/Users", async (req, res) => {
-  const response = await GetUsers();
-  res.status(200).json(response);
-});
-
-app.get("/Users/:email", async (req, res) => {
-  const response = await GetUsers(req.params.email);
-  res.status(200).json(response);
-});
-
-///////////////////////////////////////////////////////////////////////
-// Start Listening
+// LISTEN
 app.listen(process.env.PORT, () => {
-  console.log(`Server running on PORT: ${process.env.PORT}`);
-});
-
-///////////////////////////////////////////////////////////////////////
+  console.log('Listening on port: ', process.env.PORT);
+})
