@@ -32,7 +32,11 @@ export default function SearchResults() {
             <h2>Search for: {searchTerm}</h2>
 
             {books.map((book, id) => (
-                <GoogleBookCard book={book.volumeInfo} key={id} />
+                <GoogleBookCard
+                    book={book.volumeInfo}
+                    saleInfo={book.saleInfo}
+                    key={id}
+                />
             ))}
         </Row>
     );
