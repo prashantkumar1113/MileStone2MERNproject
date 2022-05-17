@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
-import {Row, Card} from "react-bootstrap";
+import {Row, Card, Table} from "react-bootstrap";
 
 export default function DisplayDb() {
     const [dbData, setDbData] = useState([]);
     const {displayField} = useParams();
     console.log("params", displayField);
+    const [dbKeys, setDbKeys] = useState([]);
 
     useEffect(() => {
         document.title = `Dbdata - ${displayField}`;
@@ -17,7 +18,8 @@ export default function DisplayDb() {
             if (resData) {
                 setDbData(resData);
                 if (resData.length > 0) {
-                    console.log("Keys", Object.keys(resData[0]));
+                    setDbKeys(Object.keys(resData[0]));
+                    console.log("Keys", dbKeys);
                 }
             } else {
                 setDbData("Not found");
@@ -28,7 +30,7 @@ export default function DisplayDb() {
 
     return (
         <Row className="mt-3">
-            <Card>
+            {/* <Card>
                 <h2>{displayField}</h2>
                 {dbData.map((data, id) => (
                     <>
@@ -42,6 +44,29 @@ export default function DisplayDb() {
                         <hr />
                     </>
                 ))}
+            </Card> */}
+            <Card>
+                <h2>{displayField}</h2>
+                <Table striped bordered hover responsive>
+                    <thead>
+                        <tr>
+                            {dbKeys.map((objectKey, id) => (
+                                <th key={id}>{objectKey}</th>
+                            ))}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {dbData.map((data, id) => (
+                            <tr>
+                                {Object.keys(data).map((objectKey) => (
+                                    <td key={objectKey + id}>
+                                        {data[objectKey]}
+                                    </td>
+                                ))}
+                            </tr>
+                        ))}
+                    </tbody>
+                </Table>
             </Card>
         </Row>
     );
