@@ -38,7 +38,6 @@ books.put("/", async (req, res) => {
 
 // Delete Routes
 books.delete("/:isbn", async (req, res) => {
-  console.log("DELETE Route")
   try {
     const response = await queryToDeleteBooks(req.params.isbn);
     res.status(200).json(response);
@@ -49,6 +48,18 @@ books.delete("/:isbn", async (req, res) => {
 
 ///////////////////////////////////////////////////////////////////////
 // Queries
+
+queryToInsertBooks = (body) => {
+  //console.log(body)
+  return db.one(
+    `
+    INSERT INTO books (isbn, title, author, description, image)
+    VALUES ($/isbn/, $/title/, $/author/, $/description/, $/image/)
+    RETURNING isbn
+    `,
+    { ...body }
+  );
+}
 
 queryToFetchBooks = (isbn) => {
     if (isbn === undefined) {
@@ -62,18 +73,6 @@ queryToFetchBooks = (isbn) => {
     }
 }
 
-queryToInsertBooks = (body) => {
-  //console.log(body)
-  return db.one(
-    `
-    INSERT INTO books (isbn, title, author, description)
-    VALUES ($/isbn/, $/title/, $/author/, $/description/)
-    RETURNING isbn
-    `,
-    { ...body }
-  );
-}
-
 queryToUpdateBooks = (body) => {
   //console.log(body)
   return db.one(
@@ -81,7 +80,8 @@ queryToUpdateBooks = (body) => {
     UPDATE books SET
     title = $/title/,
     author = $/author/,
-    description =  $/description/
+    description = $/description/,
+    image = $/image/
     WHERE isbn = $/isbn/
     RETURNING isbn
     `,
