@@ -150,7 +150,7 @@ export default function BookNavbar({handleSearch}) {
                     >
                         <FormControl
                             type="search"
-                            placeholder="Search"
+                            placeholder="Search Books"
                             className="me-2"
                             aria-label="Search"
                             onChange={(e) => {
@@ -158,7 +158,7 @@ export default function BookNavbar({handleSearch}) {
                                 // console.log(e.target.value);
                             }}
                         />
-                        <Button variant="outline-primary" type="submit">
+                        <Button variant="primary" type="submit">
                             Search
                         </Button>
                     </Form>

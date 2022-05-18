@@ -19,7 +19,7 @@ export default function DisplayDb() {
                 setDbData(resData);
                 if (resData.length > 0) {
                     setDbKeys(Object.keys(resData[0]));
-                    console.log("Keys", dbKeys);
+                    // console.log("Keys", dbKeys);
                 }
             } else {
                 setDbData("Not found");
@@ -49,9 +49,13 @@ export default function DisplayDb() {
                 <h2>{displayField}</h2>
                 <Table striped bordered hover responsive>
                     <thead>
-                        <tr>
+                        <tr className="bg-dark">
                             {dbKeys.map((objectKey, id) => (
-                                <th key={id}>{objectKey}</th>
+                                <th key={id}>
+                                    <h5 style={{color: "white"}}>
+                                        {objectKey}
+                                    </h5>
+                                </th>
                             ))}
                         </tr>
                     </thead>
