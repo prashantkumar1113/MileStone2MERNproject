@@ -9,12 +9,12 @@ export default function GoogleBookCard({book}) {
                 <Card.Img variant="top" src={book.imageLinks.thumbnail} />
             )}
             <Card.Body>
-                {book.title && (
-                    <Card.Title>
-                        {book.title} <Badge bg="primary">{book.rank}</Badge>
-                    </Card.Title>
+                {book.title && <Card.Title>{book.title}</Card.Title>}
+                {book.description && (
+                    <Card.Text>
+                        {book.description.substring(0, 100)}...
+                    </Card.Text>
                 )}
-                {book.description && <Card.Text>{book.description}</Card.Text>}
             </Card.Body>
             {book.industryIdentifiers && (
                 <Card.Footer>

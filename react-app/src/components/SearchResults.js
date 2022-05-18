@@ -1,17 +1,39 @@
+import React from "react";
+import {useState, useEffect} from "react";
+import {useParams} from "react-router-dom";
 import {Row} from "react-bootstrap";
 import GoogleBookCard from "./GoogleBookCard";
 
-export default function SearchResults({books, searchTerm}) {
-    console.log("IN search results", books);
+export default function SearchResults() {
+    const {searchTerm} = useParams();
+    const [books, setBooks] = useState([]);
+
+    useEffect(() => {
+        document.title = `Search for: ${searchTerm}`;
+        const fetchData = async () => {
+            const response = await fetch(
+                "https://www.googleapis.com/books/v1/volumes?q=" +
+                    searchTerm +
+                    "&printType=books&maxResults=20"
+            );
+            const resData = await response.json();
+            if (resData.items) {
+                console.log("Search", searchTerm);
+                // console.log("useEffect on search", resData.items);
+                setBooks(resData.items);
+            } else {
+                setBooks("Not found");
+            }
+        };
+        fetchData();
+    }, [searchTerm]);
     return (
         <Row className="mt-3">
             <h2>Search for: {searchTerm}</h2>
 
             {books.map((book, id) => (
-                <GoogleBookCard book={book.volumeInfo} />
+                <GoogleBookCard book={book.volumeInfo} key={id} />
             ))}
-            {/* <p>{books[0].volumeInfo.title}</p>
-            <p>{books[0].volumeInfo.description}</p> */}
         </Row>
     );
 }

@@ -10,7 +10,7 @@ import {
 } from "react-bootstrap";
 import {Link, useNavigate} from "react-router-dom";
 
-export default function BookNavbar({setList, handleSearch}) {
+export default function BookNavbar({handleSearch}) {
     const [searchTerm, setSearchTerm] = useState("");
     const navigate = useNavigate();
 
@@ -18,18 +18,13 @@ export default function BookNavbar({setList, handleSearch}) {
         <Navbar bg="primary" variant="dark" expand="lg">
             <Container>
                 <Navbar.Brand href="/">
-                    <i className="fas fa-book-reader"></i>{" "}
-                    {/* <i className="fab fa-facebook"></i> */}
-                    SQLDaddy Bookclub
+                    <i className="fas fa-book-reader"></i> SQLDaddy Bookclub
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
                         {/* <Nav.Link href="#home">Home</Nav.Link>
                         <Nav.Link href="#link">Link</Nav.Link> */}
-                        <Link className="nav-link" to="/">
-                            Home
-                        </Link>
                         <Link className="nav-link" to="/login">
                             Login
                         </Link>
@@ -39,54 +34,118 @@ export default function BookNavbar({setList, handleSearch}) {
                         >
                             {/* <Link className="dropdown-item" to="/fiction"> */}
                             <Link
-                                to="/list"
+                                to="/bestsellers/Combined-Print-and-E-Book-Fiction"
                                 className="dropdown-item"
-                                onClick={() => {
-                                    setList(
-                                        "Combined-Print-and-E-Book-Fiction"
-                                    );
-                                }}
                             >
                                 Fiction
                             </Link>
                             <Link
-                                to="/list"
+                                to="/bestsellers/Combined-Print-and-E-Book-Nonfiction"
                                 className="dropdown-item"
-                                onClick={() => {
-                                    setList(
-                                        "Combined-Print-and-E-Book-Nonfiction"
-                                    );
-                                }}
                             >
                                 Non Fiction
                             </Link>
                             <Link
-                                to="/list"
+                                to="/bestsellers/Young-Adult"
                                 className="dropdown-item"
-                                onClick={() => {
-                                    setList("Childrens-Middle-Grade");
-                                }}
+                            >
+                                Young Adult
+                            </Link>
+                            <Link
+                                to="/bestsellers/Childrens-Middle-Grade"
+                                className="dropdown-item"
                             >
                                 Childrens Books
                             </Link>
                             <NavDropdown.Divider />
                             <Link
                                 className="dropdown-item"
-                                onClick={() => {
-                                    setList("Advice-How-To-and-Miscellaneous");
-                                }}
-                                to="/list"
+                                to="/bestsellers/Business-Books"
+                            >
+                                Business Books
+                            </Link>
+                            <Link
+                                className="dropdown-item"
+                                to="/bestsellers/Celebrities"
+                            >
+                                Celebrities
+                            </Link>
+                            <Link
+                                className="dropdown-item"
+                                to="/bestsellers/Culture"
+                            >
+                                Culture
+                            </Link>
+                            <Link
+                                className="dropdown-item"
+                                to="/bestsellers/Education"
+                            >
+                                Education
+                            </Link>
+                            <Link
+                                className="dropdown-item"
+                                to="/bestsellers/Health"
+                            >
+                                Health
+                            </Link>
+                            <Link
+                                className="dropdown-item"
+                                to="/bestsellers/Humor"
+                            >
+                                Humor
+                            </Link>
+                            <Link
+                                className="dropdown-item"
+                                to="/bestsellers/Science"
+                            >
+                                Science
+                            </Link>
+                            <Link
+                                className="dropdown-item"
+                                to="/bestsellers/Sports"
+                            >
+                                Sports
+                            </Link>
+                            <Link
+                                className="dropdown-item"
+                                to="/bestsellers/Travel"
+                            >
+                                Travel
+                            </Link>
+                            <Link
+                                className="dropdown-item"
+                                to="/bestsellers/Graphic-Books-and-Manga"
+                            >
+                                Graphic Books and Manga
+                            </Link>
+                            <Link
+                                className="dropdown-item"
+                                to="/bestsellers/Advice-How-To-and-Miscellaneous"
                             >
                                 Advice How-To and Miscellaneous
+                            </Link>
+                        </NavDropdown>
+                        <NavDropdown title="Db Data" id="basic-nav-dropdown">
+                            <Link to="/db/users" className="dropdown-item">
+                                Users
+                            </Link>
+                            <Link to="/db/books" className="dropdown-item">
+                                Books
+                            </Link>
+                            <Link to="/db/clubs" className="dropdown-item">
+                                Clubs
+                            </Link>
+                            <NavDropdown.Divider />
+                            <Link to="/db/rosters" className="dropdown-item">
+                                Rosters
                             </Link>
                         </NavDropdown>
                     </Nav>
                     <Form
                         className="d-flex"
                         onSubmit={(e) => {
-                            handleSearch(e, searchTerm);
-                            // navigate(`/search/${searchTerm}`);
-                            navigate("/search");
+                            //handleSearch(e, searchTerm);
+                            navigate(`/search/${searchTerm}`);
                         }}
                     >
                         <FormControl
