@@ -15,6 +15,9 @@ app.get('/', (req, res) => {
 })
 
 // Controllers: 
+const bookclubsController = require('./controllers/bookclubs_controller.js')
+app.use('/bookclubs', bookclubsController)
+
 const booksController = require('./controllers/books_controller.js')
 app.use('/books', booksController)
 
