@@ -1,70 +1,36 @@
-require("dotenv").config();
-const express = require("express");
-const app = express();
-const fetch = require("node-fetch-commonjs");
+// DEPENDENCIES
+const express = require('express')
 
-const { Books, Clubs, Rosters, Users } =  require("./queries.js")
+// CONFIGURATION
+require('dotenv').config()
+const app = express()
 
-///////////////////////////////////////////////////////////////////////
-// Root
-app.get("/", async (req, res) => {
-  res.status(200).json({
-      message: "Welcome to our Bookclub API",
-  });
-});
+// MIDDLEWARE
+app.use(express.urlencoded({extended: true}))
+app.use(express.json())
 
-///////////////////////////////////////////////////////////////////////
-// Books
-app.get("/Books", async (req, res) => {
-  const response = await Books();
-  res.status(200).json(response);
-});
+// ROUTES
+app.get('/', (req, res) => {
+  res.send('Welcome to the Books API')
+})
 
-app.get("/Books/:isbn", async (req, res) => {
-  const response = await Books(req.params.isbn);
-  res.status(200).json(response);
-});
+// Controllers: 
+const bookclubsController = require('./controllers/bookclubs_controller.js')
+app.use('/bookclubs', bookclubsController)
 
-///////////////////////////////////////////////////////////////////////
-// Clubs
-app.get("/Clubs", async (req, res) => {
-  const response = await Clubs();
-  res.status(200).json(response);
-});
+const booksController = require('./controllers/books_controller.js')
+app.use('/books', booksController)
 
-app.get("/Clubs/:id", async (req, res) => {
-  const response = await Clubs(req.params.id);
-  res.status(200).json(response);
-});
+const clubsController = require('./controllers/clubs_controller.js')
+app.use('/clubs', clubsController)
 
-///////////////////////////////////////////////////////////////////////
-// Rosters
-app.get("/Rosters", async (req, res) => {
-  const response = await Rosters();
-  res.status(200).json(response);
-});
+const rostersController = require('./controllers/rosters_controller.js')
+app.use('/rosters', rostersController)
 
-app.get("/Rosters/:filter", async (req, res) => {
-  const response = await Rosters(req.params.filter);
-  res.status(200).json(response);
-});
+const usersController = require('./controllers/users_controller.js')
+app.use('/users', usersController)
 
-///////////////////////////////////////////////////////////////////////
-// Users
-app.get("/Users", async (req, res) => {
-  const response = await Users();
-  res.status(200).json(response);
-});
-
-app.get("/Users/:email", async (req, res) => {
-  const response = await Users(req.params.email);
-  res.status(200).json(response);
-});
-
-///////////////////////////////////////////////////////////////////////
-// Start Listening
+// LISTEN
 app.listen(process.env.PORT, () => {
-  console.log(`Server running on PORT: ${process.env.PORT}`);
-});
-
-///////////////////////////////////////////////////////////////////////
+  console.log('Listening on port: ', process.env.PORT);
+})

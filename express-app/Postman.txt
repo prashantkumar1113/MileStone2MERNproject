@@ -1,0 +1,42 @@
+Books
+POST:   http://localhost:3001/books
+PUT:    http://localhost:3001/books
+DELETE: http://localhost:3001/books/1234567890123
+{
+  "isbn" : "1234567890123",
+  "title" : "New Book",
+  "author" : "Thomas Waldoch",
+  "description" : "A book inserted/updated via the books controller.",
+  "image" : "https://storage.googleapis.com/du-prd/books/images/9780735219090.jpg"
+}
+
+Users
+POST:   http://localhost:3001/users
+PUT:    http://localhost:3001/users
+DELETE: http://localhost:3001/users/newuser@gmail.com
+{
+  "email" : "newuser@gmail.com",
+  "firstname" : "Bob",
+  "lastname" : "Johnson",
+  "birthdate" : "1999-12-31"
+}
+
+Clubs
+POST:   http://localhost:3001/clubs
+PUT:    http://localhost:3001/clubs/6 (Must supply ClubID!)
+DELETE: http://localhost:3001/clubs/6
+{
+  "name" : "Club via Routes",
+  "start_date" : "1999-12-31",
+  "end_date" : "2000-01-31",
+  "booksisbn" : "0735219109"
+}
+
+Rosters
+POST:   http://localhost:3001/rosters
+PUT:    http://localhost:3001/rosters/9 (Must supply RosterID!)
+DELETE: http://localhost:3001/rosters/9
+{
+  "usersemail" : "waldoch.charlie@gmail.com",
+  "clubsid" : "2"
+}
