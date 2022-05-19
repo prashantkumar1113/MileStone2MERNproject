@@ -16,8 +16,8 @@ function App() {
     const [user, setUser] = useState({username: "", isAuthenticated: false});
     console.log("from app.js", user);
     return (
-        <Router>
-            <UserContext.Provider value={user}>
+        <UserContext.Provider value={user}>
+            <Router>
                 <BookNavbar />
                 <Container>
                     <Routes>
@@ -41,8 +41,8 @@ function App() {
                         <Route path="/userprofile" element={<UserProfile />} />
                     </Routes>
                 </Container>
-            </UserContext.Provider>
-        </Router>
+            </Router>
+        </UserContext.Provider>
     );
 }
 

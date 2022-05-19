@@ -5,7 +5,7 @@ import {Form, Button, Card, Container, Row, Col} from "react-bootstrap";
 
 export default function LoginForm({setUser}) {
     const navigate = useNavigate();
-    const user = useContext(UserContext);
+    //const user = useContext(UserContext);
     const [email, setEmail] = useState("");
 
     const loginUser = async (e) => {

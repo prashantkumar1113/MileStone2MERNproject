@@ -20,7 +20,9 @@ export default function GoogleBookCard({book, saleInfo, user}) {
                         Buy
                     </Button>
                 )}
-                {user.isAuthenticated && <Button>Add Book to Club</Button>}
+                {user.isAuthenticated && (
+                    <Button variant="success">Add Book to Club</Button>
+                )}
             </Card.Body>
             {book.industryIdentifiers && (
                 <Card.Footer>

@@ -21,13 +21,13 @@ export default function BookNavbar({handleSearch}) {
         <Navbar bg="primary" variant="dark" expand="lg">
             <Container>
                 {user.isAuthenticated ? (
-                    <Navbar.Brand href="/userprofile">
+                    <Link to="/userprofile" className="navbar-brand">
                         <i className="fas fa-book-reader"></i> SQLDaddy Bookclub
-                    </Navbar.Brand>
+                    </Link>
                 ) : (
-                    <Navbar.Brand href="/">
+                    <Link to="/" className="navbar-brand">
                         <i className="fas fa-book-reader"></i> SQLDaddy Bookclub
-                    </Navbar.Brand>
+                    </Link>
                 )}
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
@@ -163,6 +163,7 @@ export default function BookNavbar({handleSearch}) {
                         className="d-flex"
                         onSubmit={(e) => {
                             //handleSearch(e, searchTerm);
+                            e.preventDefault();
                             navigate(`/search/${searchTerm}`);
                         }}
                     >

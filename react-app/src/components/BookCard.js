@@ -10,13 +10,13 @@ export default function BookCard({book, user}) {
                     {book.title} <Badge bg="primary">{book.rank}</Badge>
                 </Card.Title>
                 <Card.Text>{book.description}</Card.Text>
-                {/* <Button
+                <Button
                     href={book.amazon_product_url}
                     variant="primary"
                     target="_blank"
                 >
                     Buy
-                </Button> */}
+                </Button>
 
                 {user.isAuthenticated && (
                     <Button variant="success">Add to Book Club</Button>
