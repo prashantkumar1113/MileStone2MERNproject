@@ -1,10 +1,13 @@
 import React from "react";
-import {useState, useEffect} from "react";
+import {useState, useEffect, useContext} from "react";
 import {useParams} from "react-router-dom";
+import UserContext from "../context/UserContext";
 import {Row} from "react-bootstrap";
 import GoogleBookCard from "./GoogleBookCard";
 
 export default function SearchResults() {
+    const user = useContext(UserContext);
+    console.log(user);
     const {searchTerm} = useParams();
     const [books, setBooks] = useState([]);
 
@@ -36,6 +39,7 @@ export default function SearchResults() {
                     book={book.volumeInfo}
                     saleInfo={book.saleInfo}
                     key={id}
+                    user={user}
                 />
             ))}
         </Row>

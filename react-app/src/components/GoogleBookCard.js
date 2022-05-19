@@ -1,8 +1,8 @@
 import React from "react";
 import {Card, Button} from "react-bootstrap";
 
-export default function GoogleBookCard({book, saleInfo}) {
-    console.log("Sales info", saleInfo);
+export default function GoogleBookCard({book, saleInfo, user}) {
+    // console.log("Sales info", saleInfo);
     return (
         <Card style={{width: "16rem"}}>
             {book.imageLinks && (
@@ -20,6 +20,7 @@ export default function GoogleBookCard({book, saleInfo}) {
                         Buy
                     </Button>
                 )}
+                {user.isAuthenticated && <Button>Add Book to Club</Button>}
             </Card.Body>
             {book.industryIdentifiers && (
                 <Card.Footer>

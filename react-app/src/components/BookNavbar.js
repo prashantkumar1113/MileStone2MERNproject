@@ -15,21 +15,27 @@ export default function BookNavbar({handleSearch}) {
     const [searchTerm, setSearchTerm] = useState("");
     const navigate = useNavigate();
     const user = useContext(UserContext);
-    console.log(user);
+    // console.log(user);
 
     return (
         <Navbar bg="primary" variant="dark" expand="lg">
             <Container>
-                <Navbar.Brand href="/">
-                    <i className="fas fa-book-reader"></i> SQLDaddy Bookclub
-                </Navbar.Brand>
+                {user.isAuthenticated ? (
+                    <Navbar.Brand href="/userprofile">
+                        <i className="fas fa-book-reader"></i> SQLDaddy Bookclub
+                    </Navbar.Brand>
+                ) : (
+                    <Navbar.Brand href="/">
+                        <i className="fas fa-book-reader"></i> SQLDaddy Bookclub
+                    </Navbar.Brand>
+                )}
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
                         {/* <Nav.Link href="#home">Home</Nav.Link>
                         <Nav.Link href="#link">Link</Nav.Link> */}
                         {user.isAuthenticated ? (
-                            <Link className="nav-link" to="/login">
+                            <Link className="nav-link" to="/userprofile">
                                 {user.username}
                             </Link>
                         ) : (
