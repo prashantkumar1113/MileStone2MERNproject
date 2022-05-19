@@ -2,6 +2,7 @@
 // =======
 // DEPENDENCIES
 const express = require("express");
+const cors = require('cors');
 
 // CONFIGURATION
 require("dotenv").config();
@@ -10,6 +11,7 @@ const app = express();
 // MIDDLEWARE
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
+app.use(cors());
 
 // ROUTES
 app.get("/", (req, res) => {
