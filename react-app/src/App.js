@@ -1,4 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
+// import {useState, useEffect} from "react";
+import UserContext from "./context/UserContext";
 import {Container} from "react-bootstrap";
 import LoginForm from "./components/Login";
 import RegisterForm from "./components/Register";
@@ -6,7 +8,6 @@ import BookNavbar from "./components/BookNavbar";
 import BooksRow from "./components/BooksRow";
 import SearchResults from "./components/SearchResults";
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
-// import {useState, useEffect} from "react";
 import DisplayDb from "./components/DisplayDb";
 import "./App.css";
 
@@ -45,25 +46,30 @@ function App() {
     //     };
     //     fetchData();
     // }, [search]);
-
+    const user = {username: "", isAuthenticated: false, clubIds: []};
     return (
         <Router>
-            <BookNavbar />
-            <Container>
-                <Routes>
-                    <Route path="/" element={<RegisterForm />} />
-                    <Route path="/login" element={<LoginForm />} />
-                    <Route
-                        path="/bestsellers/:nytList"
-                        element={<BooksRow />}
-                    />
-                    <Route
-                        path="/search/:searchTerm"
-                        element={<SearchResults />}
-                    />
-                    <Route path="/db/:displayField" element={<DisplayDb />} />
-                </Routes>
-            </Container>
+            <UserContext.Provider value={user}>
+                <BookNavbar />
+                <Container>
+                    <Routes>
+                        <Route path="/" element={<RegisterForm />} />
+                        <Route path="/login" element={<LoginForm />} />
+                        <Route
+                            path="/bestsellers/:nytList"
+                            element={<BooksRow />}
+                        />
+                        <Route
+                            path="/search/:searchTerm"
+                            element={<SearchResults />}
+                        />
+                        <Route
+                            path="/db/:displayField"
+                            element={<DisplayDb />}
+                        />
+                    </Routes>
+                </Container>
+            </UserContext.Provider>
         </Router>
     );
 }
