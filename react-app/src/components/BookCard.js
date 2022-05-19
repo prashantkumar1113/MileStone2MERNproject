@@ -1,20 +1,8 @@
 import React from "react";
 import {Card, Button, Badge} from "react-bootstrap";
 
-export default function BookCard({book}) {
-    // console.log({
-    //     title: book.title,
-    //     book_image: book.book_image,
-    //     description: book.description,
-    //     primary_isbn10: book.primary_isbn10,
-    //     author: book.author,
-    // });
+export default function BookCard({book, user}) {
     return (
-        // <div>
-        //     <p>{book.title}</p>
-        //     <img src={book.book_image} alt={book.title} width="150px" />
-        // </div>
-
         <Card style={{width: "16rem"}}>
             <Card.Img variant="top" src={book.book_image} />
             <Card.Body>
@@ -29,6 +17,10 @@ export default function BookCard({book}) {
                 >
                     Buy
                 </Button>
+
+                {user.isAuthenticated && (
+                    <Button variant="success">Add to Book Club</Button>
+                )}
             </Card.Body>
             <Card.Footer>{book.primary_isbn10}</Card.Footer>
         </Card>

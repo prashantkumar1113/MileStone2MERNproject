@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
 import {
     Navbar,
     Container,
@@ -9,25 +9,40 @@ import {
     Button,
 } from "react-bootstrap";
 import {Link, useNavigate} from "react-router-dom";
+import UserContext from "../context/UserContext";
 
 export default function BookNavbar({handleSearch}) {
     const [searchTerm, setSearchTerm] = useState("");
     const navigate = useNavigate();
+    const user = useContext(UserContext);
+    // console.log(user);
 
     return (
         <Navbar bg="primary" variant="dark" expand="lg">
             <Container>
-                <Navbar.Brand href="/">
-                    <i className="fas fa-book-reader"></i> SQLDaddy Bookclub
-                </Navbar.Brand>
+                {user.isAuthenticated ? (
+                    <Link to="/userprofile" className="navbar-brand">
+                        <i className="fas fa-book-reader"></i> SQLDaddy Bookclub
+                    </Link>
+                ) : (
+                    <Link to="/" className="navbar-brand">
+                        <i className="fas fa-book-reader"></i> SQLDaddy Bookclub
+                    </Link>
+                )}
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
                         {/* <Nav.Link href="#home">Home</Nav.Link>
                         <Nav.Link href="#link">Link</Nav.Link> */}
-                        <Link className="nav-link" to="/login">
-                            Login
-                        </Link>
+                        {user.isAuthenticated ? (
+                            <Link className="nav-link" to="/userprofile">
+                                {user.username}
+                            </Link>
+                        ) : (
+                            <Link className="nav-link" to="/login">
+                                Login
+                            </Link>
+                        )}
                         <NavDropdown
                             title="Bestseller Lists"
                             id="basic-nav-dropdown"
@@ -139,12 +154,16 @@ export default function BookNavbar({handleSearch}) {
                             <Link to="/db/rosters" className="dropdown-item">
                                 Rosters
                             </Link>
+                            <Link to="/db/bookclubs" className="dropdown-item">
+                                Bookclubs
+                            </Link>
                         </NavDropdown>
                     </Nav>
                     <Form
                         className="d-flex"
                         onSubmit={(e) => {
                             //handleSearch(e, searchTerm);
+                            e.preventDefault();
                             navigate(`/search/${searchTerm}`);
                         }}
                     >

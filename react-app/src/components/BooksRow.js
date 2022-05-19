@@ -1,9 +1,11 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useContext} from "react";
 import {useParams} from "react-router-dom";
+import UserContext from "../context/UserContext";
 import {Row} from "react-bootstrap";
 import BookCard from "./BookCard";
 
 export default function BooksRow() {
+    const user = useContext(UserContext);
     const {nytList} = useParams();
     const [books, setBooks] = useState([]);
 
@@ -32,7 +34,7 @@ export default function BooksRow() {
         <Row className="mt-3">
             <h2>{nytList} - NYT Bestseller List</h2>
             {books.map((book, id) => (
-                <BookCard book={book} key={id} />
+                <BookCard book={book} key={id} user={user} />
             ))}
         </Row>
     );
