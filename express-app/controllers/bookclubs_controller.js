@@ -8,32 +8,52 @@ const bookclubs = express.Router();
 // Read Routes
 
 bookclubs.get("/", async (req, res) => {
-  const response = await queryToFetchBookClubs(baseQuery);
-  res.status(200).json(response);
+  try {
+    const response = await queryToFetchBookClubs(baseQuery);
+    res.status(200).json(response);
+  } catch (error) {
+    res.status(500).json(error);
+  }
 });
-  
+
 bookclubs.get("/Books/:isbn", async (req, res) => {
-  var query = `${baseQuery} WHERE (books.isbn = '${req.params.isbn}')`
-  const response = await queryToFetchBookClubs(query);
-  res.status(200).json(response);
+  try {
+    var query = `${baseQuery} WHERE (books.isbn = '${req.params.isbn}')`
+    const response = await queryToFetchBookClubs(query);
+    res.status(200).json(response);
+  } catch (error) {
+    res.status(500).json(error);
+  }
 });
 
 bookclubs.get("/Clubs/:id", async (req, res) => {
-  var query = `${baseQuery} WHERE (clubs.id = '${req.params.id}')`
-  const response = await queryToFetchBookClubs(query);
-  res.status(200).json(response);
+  try {
+    var query = `${baseQuery} WHERE (clubs.id = '${req.params.id}')`
+    const response = await queryToFetchBookClubs(query);
+    res.status(200).json(response);
+  } catch (error) {
+    res.status(500).json(error);
+  }
 });
 
 bookclubs.get("/Rosters/:id", async (req, res) => {
-  var query = `${baseQuery} WHERE (rosters.ID = '${req.params.id}')`
-  const response = await queryToFetchBookClubs(query);
-  res.status(200).json(response);
+  try {
+    var query = `${baseQuery} WHERE (rosters.ID = '${req.params.id}')`
+    const response = await queryToFetchBookClubs(query);
+    res.status(200).json(response);
+  } catch (error) {
+    res.status(500).json(error);
+  }
 });
 
 bookclubs.get("/Users/:email", async (req, res) => {
-  var query = `${baseQuery} WHERE (users.Email = '${req.params.email}')`
-  const response = await queryToFetchBookClubs(query);
-  res.status(200).json(response);
+  try {
+    var query = `${baseQuery} WHERE (users.Email = '${req.params.email}')`
+    const response = await queryToFetchBookClubs(query);
+    res.status(200).json(response);
+  } catch (error) {
+    res.status(500).json(error);
+  }
 });
 
 ///////////////////////////////////////////////////////////////////////

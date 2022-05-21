@@ -17,13 +17,21 @@ clubs.post("/", async (req, res) => {
 
 // Read Routes
 clubs.get("/", async (req, res) => {
-  const response = await queryToFetchClubs();
-  res.status(200).json(response);
+  try {
+    const response = await queryToFetchClubs();
+    res.status(200).json(response);
+  } catch (error) {
+    res.status(500).json(error);
+  }
 });
 
 clubs.get("/:id", async (req, res) => {
-  const response = await queryToFetchClubs(req.params.id);
-  res.status(200).json(response);
+  try {
+    const response = await queryToFetchClubs(req.params.id);
+    res.status(200).json(response);
+  } catch (error) {
+    res.status(500).json(error);
+  }
 });
 
 // Update Routes

@@ -17,13 +17,21 @@ rosters.post("/", async (req, res) => {
 
 // Read Routes
 rosters.get("/", async (req, res) => {
-  const response = await queryToFetchRosters();
-  res.status(200).json(response);
+  try {
+    const response = await queryToFetchRosters();
+    res.status(200).json(response);
+  } catch (error) {
+    res.status(500).json(error);
+  }
 });
 
 rosters.get("/:id", async (req, res) => {
-  const response = await queryToFetchRosters(req.params.id);
-  res.status(200).json(response);
+  try {
+    const response = await queryToFetchRosters(req.params.id);
+    res.status(200).json(response);
+  } catch (error) {
+    res.status(500).json(error);
+  }
 });
 
 // Update Routes

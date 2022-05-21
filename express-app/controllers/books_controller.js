@@ -17,13 +17,21 @@ books.post("/", async (req, res) => {
 
 // Read Routes
 books.get("/", async (req, res) => {
-  const response = await queryToFetchBooks();
-  res.status(200).json(response);
+  try {
+    const response = await queryToFetchBooks();
+    res.status(200).json(response);
+  } catch (error) {
+    res.status(500).json(error);
+  }
 });
 
 books.get("/:isbn", async (req, res) => {
-  const response = await queryToFetchBooks(req.params.isbn);
-  res.status(200).json(response);
+  try {
+    const response = await queryToFetchBooks(req.params.isbn);
+    res.status(200).json(response);
+  } catch (error) {
+    res.status(500).json(error);
+  }
 });
 
 // Update Routes

@@ -19,8 +19,12 @@ users.post("/", async (req, res) => {
 
 // Read Routes
 users.get("/", async (req, res) => {
-  const response = await queryToFetchUsers();
-  res.status(200).json(response);
+  try {
+    const response = await queryToFetchUsers();
+    res.status(200).json(response);
+  } catch (error) {
+    res.status(500).json(error);
+  }
 });
 
 users.get("/:email", async (req, res) => {
