@@ -6,7 +6,7 @@ const cors = require('cors');
 const path = require('path');
 
 // CONFIGURATION
-require("dotenv").config();
+require('dotenv').config({path: '../.env'})
 const app = express();
 
 // MIDDLEWARE
@@ -46,6 +46,6 @@ const usersController = require("./controllers/users_controller.js");
 app.use("/users", usersController);
 
 // LISTEN
-app.listen(process.env.PORT, () => {
-    console.log("Listening on port: ", process.env.PORT);
+app.listen(process.env.PORT_EXPRESS, () => {
+    console.log("Listening on port: ", process.env.PORT_EXPRESS);
 });
