@@ -1,6 +1,6 @@
 # MileStone2MERNproject
 # Express App
-# Entity Relationship Diagram (ERD) <br><br> ![](./assets/images/ERD.png)
+# PostgreSQL Entity Relationship Diagram (ERD) <br><br> ![](./assets/images/ERD.png)
 
 # CRUD Routes <br> (All SQL errors result in Server Error 500)
 ## Create Routes (POST)
