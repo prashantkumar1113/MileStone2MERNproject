@@ -8,7 +8,7 @@ const users = express.Router()
 // Create Routes
 users.post("/", async (req, res) => {
   try {
-    console.log("req", req)
+    //console.log("req", req)
     console.log("req body", req.body)
     const response = await queryToInsertUsers(req.body);
     res.status(200).json(response);

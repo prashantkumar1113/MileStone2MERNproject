@@ -3,6 +3,7 @@
 // DEPENDENCIES
 const express = require("express");
 const cors = require('cors');
+const path = require('path');
 
 // CONFIGURATION
 require("dotenv").config();
@@ -15,7 +16,17 @@ app.use(cors());
 
 // ROUTES
 app.get("/", (req, res) => {
-    res.send("Welcome to the Books API");
+    var options = {
+        root: path.join(__dirname)
+    };
+    var fileName = 'README.md';
+    res.sendFile(fileName, options, function (err) {
+        if (err) {
+            next(err);
+        } else {
+            console.log('Sent:', fileName);
+        }
+    });    
 });
 
 // Controllers:
