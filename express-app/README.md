@@ -1,9 +1,15 @@
 # MileStone2MERNproject
 # Express App
-# Entity Relationship Diagram (ERD)
-![Tux, the Linux mascot](./assets/images/ERD.png)
+# Entity Relationship Diagram (ERD) <br><br> ![](./assets/images/ERD.png)
+
 # CRUD Routes <br> (All SQL errors result in Server Error 500)
 ## Create Routes (POST)
+| Table     | Routes          | Results 
+|-----------|-----------------|---------
+| Books     | /Books {JSON}   |
+| Clubs     | /Clubs {JSON}   |
+| Rosters   | /Rosters {JSON} |
+| Users     | /Users {JSON}   |
 
 ## Read Routes (GET)
 | Table     | Routes                  | Results 
@@ -23,5 +29,17 @@
 | BookClubs | /BookClubs/Users/:email | Single Object or NULL
 
 ## Update Routes (PUT)
+| Table     | Routes              | Results 
+|-----------|---------------------|---------
+| Books     | /Books {JSON}       |
+| Clubs     | /Clubs/:id {JSON}   |
+| Rosters   | /Rosters/:id {JSON} |
+| Users     | /Users {JSON}       |
 
 ## Delete Routes (Delete)
+| Table     | Routes        | Results 
+|-----------|---------------|---------
+| Books     | /Books/:isbn  |
+| Clubs     | /Clubs/:id    |
+| Rosters   | /Rosters/:id  |
+| Users     | /Users/:email |
