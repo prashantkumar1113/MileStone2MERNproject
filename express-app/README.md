@@ -6,10 +6,10 @@
 ## Create Routes (POST)
 | Table     | Routes          | Results 
 |-----------|-----------------|---------
-| Books     | /Books {JSON}   |
-| Clubs     | /Clubs {JSON}   |
-| Rosters   | /Rosters {JSON} |
-| Users     | /Users {JSON}   |
+| Books     | /Books {JSON}   | {isbn} on Success or Server Error 500
+| Clubs     | /Clubs {JSON}   | {name} on Success or Server Error 500
+| Rosters   | /Rosters {JSON} | {usersemail} on Success or Server Error 500
+| Users     | /Users {JSON}   | {email} on Success or Server Error 500
 
 ## Read Routes (GET)
 | Table     | Routes                  | Results 
@@ -31,15 +31,15 @@
 ## Update Routes (PUT)
 | Table     | Routes              | Results 
 |-----------|---------------------|---------
-| Books     | /Books {JSON}       |
-| Clubs     | /Clubs/:id {JSON}   |
-| Rosters   | /Rosters/:id {JSON} |
-| Users     | /Users {JSON}       |
+| Books     | /Books {JSON}       | {isbn} on Success or Server Error 500
+| Clubs     | /Clubs/:id {JSON}   | {id} on Success or Server Error 500
+| Rosters   | /Rosters/:id {JSON} | {id} on Success or Server Error 500
+| Users     | /Users {JSON}       | {email} on Success or Server Error 500
 
 ## Delete Routes (Delete)
 | Table     | Routes        | Results 
 |-----------|---------------|---------
-| Books     | /Books/:isbn  |
-| Clubs     | /Clubs/:id    |
-| Rosters   | /Rosters/:id  |
-| Users     | /Users/:email |
+| Books     | /Books/:isbn  | Number of Rows Deleted
+| Clubs     | /Clubs/:id    | Number of Rows Deleted
+| Rosters   | /Rosters/:id  | Number of Rows Deleted
+| Users     | /Users/:email | Number of Rows Deleted
