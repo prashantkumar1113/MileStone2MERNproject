@@ -23,17 +23,26 @@ export default function BookClubCard({club}) {
     return (
         // <p>from new component {club.name}</p>
         <Card style={{width: "18rem"}}>
+            <Card.Img variant="top" src={club.image} />
+
             <Card.Body>
                 <Card.Text>
                     <p>
                         <b>Club Id: </b> {club.clubsid}
-                    </p>
-                    <p>
+                        <br />
                         <b>Club Name: </b> {club.name}
                     </p>
                     <p>
-                        <b>Club Book ISBN: </b> {club.isbn}
+                        <b>Book Name: </b> {club.title}
+                        <br />
+                        <b>Book ISBN: </b> {club.isbn}
                     </p>
+                    <p>
+                        <b>Club Start date: </b> {club.start_date}
+                        <br />
+                        <b>Club End date: </b> {club.end_date}
+                    </p>
+
                     <Button
                         variant="danger"
                         onClick={(e) => {
