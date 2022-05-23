@@ -10,9 +10,11 @@ export default function DisplayDb() {
 
     useEffect(() => {
         document.title = `Dbdata - ${displayField}`;
-        const OUR_DB_URL = "http://localhost:3001/";
+        // const OUR_DB_URL = "http://localhost:3001/";
         const fetchData = async () => {
-            const response = await fetch(OUR_DB_URL + displayField);
+            const response = await fetch(
+                process.env.REACT_APP_OUR_DB_URL + displayField
+            );
             const resData = await response.json();
             console.log("RES Data", resData);
             if (resData) {

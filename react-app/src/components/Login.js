@@ -11,8 +11,10 @@ export default function LoginForm({setUser}) {
     const loginUser = async (e) => {
         e.preventDefault();
         console.log(email);
-        const OUR_DB_URL = `http://localhost:3001/users/${email}`;
-        const response = await fetch(OUR_DB_URL);
+        // const OUR_DB_URL = `http://localhost:3001/users/${email}`;
+        const response = await fetch(
+            `${process.env.REACT_APP_OUR_DB_URL}users/${email}`
+        );
         const data = await response.json();
         console.log(data);
         if (data) {

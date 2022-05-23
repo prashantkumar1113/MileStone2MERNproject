@@ -8,12 +8,14 @@ export default function UserProfile({setUser}) {
     const navigate = useNavigate();
     const [clubs, setClubs] = useState([]);
 
-    const OUR_DB_URL = "http://localhost:3001/bookclubs";
+    // const OUR_DB_URL = "http://localhost:3001/bookclubs";
     document.title = `My Profile: ${user.username}`;
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await fetch(OUR_DB_URL);
+            const response = await fetch(
+                process.env.REACT_APP_OUR_DB_URL + "bookclubs"
+            );
             const resData = await response.json();
             // console.log("Clubs Data", resData);
             if (resData) {
