@@ -15,12 +15,12 @@ export default function UserProfile({setUser}) {
         const fetchData = async () => {
             const response = await fetch(OUR_DB_URL);
             const resData = await response.json();
-            console.log("club    Data", resData);
+            // console.log("Clubs Data", resData);
             if (resData) {
-                console.log(
-                    "Filter:",
-                    resData.filter((club) => club.email === user.username)
-                );
+                // console.log(
+                //     "Filter:",
+                //     resData.filter((club) => club.email === user.username)
+                // );
                 setClubs(
                     resData.filter((club) => club.email === user.username)
                 );
@@ -39,11 +39,15 @@ export default function UserProfile({setUser}) {
                         roundedCircle={true}
                         src="https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg"
                     />
-                    <h6>{user.username}</h6>
-                    <h6>
-                        isAuthenticated:{" "}
-                        {user.isAuthenticated ? "true" : "false"}
-                    </h6>
+                    <Card.Body>
+                        <Card.Text>
+                            <h6>{user.username}</h6>
+                            <h6>
+                                isAuthenticated:{" "}
+                                {user.isAuthenticated ? "true" : "false"}
+                            </h6>
+                        </Card.Text>
+                    </Card.Body>
                     <Button
                         variant="dark"
                         onClick={(e) => {
@@ -59,9 +63,16 @@ export default function UserProfile({setUser}) {
             <Col md={9}>
                 <h2>My Clubs</h2>{" "}
                 <Card>
-                    {clubs.map((club) => (
-                        <p>{club.name}</p>
-                    ))}
+                    <Card.Body>
+                        <Card.Text>
+                            {clubs.length > 0 ? (
+                                clubs.map((club) => <p>{club.name}</p>)
+                            ) : (
+                                <p>None</p>
+                            )}
+                        </Card.Text>
+                        <Button variant="success">Add a Bookclub</Button>
+                    </Card.Body>
                 </Card>
             </Col>
         </Row>
