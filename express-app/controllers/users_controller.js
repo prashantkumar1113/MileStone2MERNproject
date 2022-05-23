@@ -8,7 +8,7 @@ const users = express.Router()
 // Create Routes
 users.post("/", async (req, res) => {
   try {
-    console.log("req", req)
+    //console.log("req", req)
     console.log("req body", req.body)
     const response = await queryToInsertUsers(req.body);
     res.status(200).json(response);
@@ -19,8 +19,12 @@ users.post("/", async (req, res) => {
 
 // Read Routes
 users.get("/", async (req, res) => {
-  const response = await queryToFetchUsers();
-  res.status(200).json(response);
+  try {
+    const response = await queryToFetchUsers();
+    res.status(200).json(response);
+  } catch (error) {
+    res.status(500).json(error);
+  }
 });
 
 users.get("/:email", async (req, res) => {

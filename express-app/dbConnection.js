@@ -1,5 +1,10 @@
-require('dotenv').config();
-const { ConnectionString } = require('connection-string');
+///////////////////////////////////////////////////////////////////////
+// =======
+// DEPENDENCIES
+const path = require('path');
+
+// CONFIGURATION
+require('dotenv').config({path: '../.env'})
 
 const initOptions = {
   capSQL: true,
