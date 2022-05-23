@@ -42,7 +42,15 @@ export default function BookClubCard({club}) {
                         <br />
                         <b>Club End date: </b> {club.end_date}
                     </p>
-
+                    <Button
+                        variant="warning"
+                        onClick={(e) => {
+                            e.preventDefault();
+                            navigate(`/clubs/edit/${club.clubsid}`);
+                        }}
+                    >
+                        Edit Club
+                    </Button>
                     <Button
                         variant="danger"
                         onClick={(e) => {

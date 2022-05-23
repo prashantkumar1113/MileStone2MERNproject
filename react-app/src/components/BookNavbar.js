@@ -43,6 +43,11 @@ export default function BookNavbar({handleSearch}) {
                                 Login
                             </Link>
                         )}
+                        {user.isAuthenticated && (
+                            <Link className="nav-link" to="/clubs/join">
+                                Join a Club
+                            </Link>
+                        )}
                         <NavDropdown
                             title="Bestseller Lists"
                             id="basic-nav-dropdown"
