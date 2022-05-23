@@ -10,6 +10,8 @@ import BooksRow from "./components/BooksRow";
 import SearchResults from "./components/SearchResults";
 import DisplayDb from "./components/DisplayDb";
 import UserProfile from "./components/UserProfile";
+import EditClub from "./components/EditClub";
+import JoinClub from "./components/JoinClub";
 import "./App.css";
 
 function App() {
@@ -42,6 +44,11 @@ function App() {
                             path="/userprofile"
                             element={<UserProfile setUser={setUser} />}
                         />
+                        <Route
+                            path="/clubs/edit/:clubId"
+                            element={<EditClub />}
+                        />
+                        <Route path="/clubs/join" element={<JoinClub />} />
                     </Routes>
                 </Container>
             </Router>
