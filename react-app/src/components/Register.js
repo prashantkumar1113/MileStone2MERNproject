@@ -1,17 +1,18 @@
-import React, {useEffect, useState} from "react";
-import {Form, Button, Container, Col, Row} from "react-bootstrap";
-import {Link} from "react-router-dom";
+import React, {useState} from "react";
+import {Form, Button, Col, Row} from "react-bootstrap";
+import {Link, useNavigate} from "react-router-dom";
 
 export default function RegisterForm() {
     const [emailInput, setEmailInput] = useState("");
     const [firstNameInput, setFirstNameInput] = useState("");
     const [lastNameInput, setLastNameInput] = useState("");
     const [birthdateInput, setBirthdateInput] = useState("");
+    const navigate = useNavigate();
 
     const queryToInsertUser = async (e) => {
         e.preventDefault();
-        console.log(firstNameInput);
-        const OUR_DB_URL = "http://localhost:3001/users";
+        // console.log(firstNameInput);
+        // const OUR_DB_URL = "http://localhost:3001/users";
         const requestOptions = {
             method: "POST",
             headers: {"Content-Type": "application/json"},
@@ -22,9 +23,13 @@ export default function RegisterForm() {
                 birthdate: birthdateInput,
             }),
         };
-        const response = await fetch(OUR_DB_URL, requestOptions);
+        const response = await fetch(
+            process.env.REACT_APP_OUR_DB_URL + "users",
+            requestOptions
+        );
         const data = await response.json();
-        console.log(data);
+        // console.log(data);
+        navigate("/userprofile");
     };
 
     return (
