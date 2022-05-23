@@ -38,7 +38,10 @@ function App() {
                             path="/db/:displayField"
                             element={<DisplayDb />}
                         />
-                        <Route path="/userprofile" element={<UserProfile />} />
+                        <Route
+                            path="/userprofile"
+                            element={<UserProfile setUser={setUser} />}
+                        />
                     </Routes>
                 </Container>
             </Router>
