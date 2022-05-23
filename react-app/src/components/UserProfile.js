@@ -1,7 +1,8 @@
 import React, {useContext, useEffect, useState} from "react";
+import {useNavigate} from "react-router-dom";
 import UserContext from "../context/UserContext";
 import {Row, Col, Card, Image, Button} from "react-bootstrap";
-import {useNavigate} from "react-router-dom";
+import BookClubCard from "./BookClubCard";
 
 export default function UserProfile({setUser}) {
     const user = useContext(UserContext);
@@ -66,13 +67,17 @@ export default function UserProfile({setUser}) {
                 <h2>My Clubs</h2>{" "}
                 <Card>
                     <Card.Body>
-                        <Card.Text>
+                        <Row>
                             {clubs.length > 0 ? (
-                                clubs.map((club) => <p>{club.name}</p>)
+                                clubs.map((club) => (
+                                    <BookClubCard club={club} />
+                                ))
                             ) : (
-                                <p>None</p>
+                                <Card.Text>
+                                    <p>None</p>
+                                </Card.Text>
                             )}
-                        </Card.Text>
+                        </Row>
                         <Button variant="success">Add a Bookclub</Button>
                     </Card.Body>
                 </Card>
