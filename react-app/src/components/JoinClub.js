@@ -27,7 +27,7 @@ export default function JoinClub() {
         );
         const data = await response.json();
         console.log("Post DATA", data);
-        navigate("/db/rosters");
+        navigate("/userprofile");
     };
 
     useEffect(() => {

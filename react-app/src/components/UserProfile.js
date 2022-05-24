@@ -70,7 +70,10 @@ export default function UserProfile({setUser}) {
                         <Row>
                             {clubs.length > 0 ? (
                                 clubs.map((club) => (
-                                    <BookClubCard club={club} />
+                                    <BookClubCard
+                                        club={club}
+                                        username={user.username}
+                                    />
                                 ))
                             ) : (
                                 <Card.Text>
