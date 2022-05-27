@@ -1,0 +1,20 @@
+{
+    "name": "milestone2mernproject",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "npm start --prefix react-app/"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/prashantkumar1113/MileStone2MERNproject.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/prashantkumar1113/MileStone2MERNproject/issues"
+    },
+    "homepage": "https://github.com/prashantkumar1113/MileStone2MERNproject#readme"
+}
