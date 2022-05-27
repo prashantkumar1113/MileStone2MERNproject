@@ -16,7 +16,7 @@ export default function DisplayDb() {
                 process.env.REACT_APP_OUR_DB_URL + displayField
             );
             const resData = await response.json();
-            console.log("RES Data", resData);
+            //console.log("RES Data", resData);
             if (resData) {
                 setDbData(resData);
                 if (resData.length > 0) {

@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {Form, Button, Col, Row} from "react-bootstrap";
 import {Link, useNavigate} from "react-router-dom";
 
-export default function RegisterForm() {
+export default function RegisterForm({setUser}) {
     const [emailInput, setEmailInput] = useState("");
     const [firstNameInput, setFirstNameInput] = useState("");
     const [lastNameInput, setLastNameInput] = useState("");
@@ -29,7 +29,13 @@ export default function RegisterForm() {
         );
         const data = await response.json();
         // console.log(data);
-        navigate("/userprofile");
+        if (data) {
+            setUser({username: data.email, isAuthenticated: true});
+            navigate(`/userprofile`);
+        } else {
+            navigate(`/`);
+        }
+        // navigate("/userprofile");
     };
 
     return (

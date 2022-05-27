@@ -70,7 +70,10 @@ export default function UserProfile({setUser}) {
                         <Row>
                             {clubs.length > 0 ? (
                                 clubs.map((club) => (
-                                    <BookClubCard club={club} />
+                                    <BookClubCard
+                                        club={club}
+                                        username={user.username}
+                                    />
                                 ))
                             ) : (
                                 <Card.Text>
@@ -79,6 +82,15 @@ export default function UserProfile({setUser}) {
                             )}
                         </Row>
                         <Button variant="success">Add a Bookclub</Button>
+                        <Button
+                            variant="primary"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                navigate("/clubs/join");
+                            }}
+                        >
+                            Join a Bookclub
+                        </Button>
                     </Card.Body>
                 </Card>
             </Col>

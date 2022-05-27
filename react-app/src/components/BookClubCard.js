@@ -4,21 +4,38 @@ import {Button, Card} from "react-bootstrap";
 
 export default function BookClubCard({club}) {
     const navigate = useNavigate();
-    console.log("Club", club);
-    const handleClubDelete = async (e, id) => {
+    //console.log("Club", club);
+
+    const leaveClub = async (e) => {
         e.preventDefault();
         const requestOptions = {
             method: "DELETE",
             headers: {"Content-Type": "application/json"},
         };
         const response = await fetch(
-            `${process.env.REACT_APP_OUR_DB_URL}clubs/${club.clubsid}`,
+            `${process.env.REACT_APP_OUR_DB_URL}rosters/${club.rosterid}`,
             requestOptions
         );
         const data = await response.json();
-        console.log("DELETE DATA", data);
-        navigate("/db/clubs");
+        console.log("DELETE Roster", data);
+        navigate("/db/rosters");
     };
+
+    // No longer using this because I don't want to delete clubs
+    // const handleClubDelete = async (e, id) => {
+    //     e.preventDefault();
+    //     const requestOptions = {
+    //         method: "DELETE",
+    //         headers: {"Content-Type": "application/json"},
+    //     };
+    //     const response = await fetch(
+    //         `${process.env.REACT_APP_OUR_DB_URL}clubs/${club.clubsid}`,
+    //         requestOptions
+    //     );
+    //     const data = await response.json();
+    //     console.log("DELETE DATA", data);
+    //     navigate("/db/clubs");
+    // };
 
     return (
         // <p>from new component {club.name}</p>
@@ -51,14 +68,17 @@ export default function BookClubCard({club}) {
                     >
                         Edit Club
                     </Button>
-                    <Button
+                    <Button variant="danger" onClick={leaveClub}>
+                        Leave Club
+                    </Button>
+                    {/* <Button
                         variant="danger"
                         onClick={(e) => {
                             handleClubDelete(e, club.clubsid);
                         }}
                     >
                         Delete Club
-                    </Button>
+                    </Button> */}
                 </Card.Text>
             </Card.Body>
         </Card>

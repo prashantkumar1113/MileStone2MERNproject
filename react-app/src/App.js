@@ -23,7 +23,10 @@ function App() {
                 <BookNavbar />
                 <Container>
                     <Routes>
-                        <Route path="/" element={<RegisterForm />} />
+                        <Route
+                            path="/"
+                            element={<RegisterForm setUser={setUser} />}
+                        />
                         <Route
                             path="/login"
                             element={<LoginForm setUser={setUser} />}
